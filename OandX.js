@@ -21,10 +21,10 @@ function checkWin(currentPlayer) {
             squares[b].textContent === currentPlayer && 
             squares[c].textContent === currentPlayer
         ) {
-            return true
+            return [a, b, c]
         }
     }
-    return false
+    return null
 }
 
 function checkTie() {
@@ -63,21 +63,30 @@ board.after(message)
 for(let i = 0; i < squares.length; i++){
     squares[i].addEventListener('click', () => {
         if (!gameActive) return
+        
         if(squares[i].textContent !== ''){
             return
         }
         squares[i].textContent = currentPlayer
+        
         if(checkWin(currentPlayer)) {
             message.textContent=`Game over! ${currentPlayer} wins!`
-            gameActive = false
+        
+            checkWin(currentPlayer).forEach(a => {
+            squares[a].classList.add('winner')
+        })
+            
+        gameActive = false
             return
         }
+        
         if(checkTie()) {
             message.textContent= `Game is tied!`
             gameActive = false
             return
         }
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
+        
         if(currentPlayer == players[0]) {
             message.textContent= `It is X's turn!`
         } else {

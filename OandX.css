@@ -53,6 +53,10 @@ p {
     color: white;
 }
 
-
+.winner {
+    position: relative;
+    background-color: black;
+    color: rgb(238, 140, 172);
+}
 
 
