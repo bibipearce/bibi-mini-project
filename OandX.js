@@ -36,6 +36,8 @@ function checkTie() {
     return true
 }
 
+let gameActive = true //this will later allow the game to be played or not
+
 //this is what happens when we want to restart
 function restart() {
     for (let i=0; i<squares.length; i++) {
@@ -56,20 +58,23 @@ board.after(message)
 //need to look into this more
 
 
-
-//copied from a website - doesn't work ???
+//logic to add all this together and create correct message
+//loop so win/ties are continously looked for
 for(let i = 0; i < squares.length; i++){
     squares[i].addEventListener('click', () => {
+        if (!gameActive) return
         if(squares[i].textContent !== ''){
             return
         }
         squares[i].textContent = currentPlayer
         if(checkWin(currentPlayer)) {
             message.textContent=`Game over! ${currentPlayer} wins!`
+            gameActive = false
             return
         }
         if(checkTie()) {
             message.textContent= `Game is tied!`
+            gameActive = false
             return
         }
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
