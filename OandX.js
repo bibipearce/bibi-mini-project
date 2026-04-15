@@ -2,6 +2,7 @@
 //retrieve elements we want to interact with
 const board = document.getElementById('board') 
 const squares = document.getElementsByClassName('square')
+const restartButton = document.getElementById('restartButton')
 
 //make players to interact with the game/board
 const players = ['X', 'O']
@@ -41,11 +42,14 @@ let gameActive = true //this will later allow the game to be played or not
 //this is what happens when we want to restart
 function restart() {
     for (let i=0; i<squares.length; i++) {
-        squares[i].textContent = ""
+        squares[i].textContent = "";
+        squares[i].classList.remove('winner');
     }
-    message.textContent = "It is X's turn!"
-    currentPlayer = players[0]
+    message.textContent = "It is X's turn!";
+    currentPlayer = players[0];
+    gameActive = true;
 }
+restartButton.addEventListener('click', restart)
 
 
 //we need a message/prompt when its a players turn/the game is won etc
