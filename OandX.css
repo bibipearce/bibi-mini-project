@@ -1,7 +1,8 @@
 body {
-    background-color: pink;
+    background-image: url(IMG_1740.jpg);
+    background-repeat: repeat;
     color: rgb(62, 65, 66);
-    font-family: monospace
+    font-family: monospace;
 }
 h1 {
     text-align: center;
