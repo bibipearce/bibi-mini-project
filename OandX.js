@@ -3,10 +3,20 @@
 const board = document.getElementById('board') 
 const squares = document.getElementsByClassName('square')
 const restartButton = document.getElementById('restartButton')
+const player1 = document.getElementById('player1')
+const player2 = document.getElementById('player2')
 
 //make players to interact with the game/board
 const players = ['X', 'O']
 let currentPlayer = players[0]
+//allow players to enter names for personalisation
+function playersNames () {
+    if (currentPlayer === 'X') {
+        return player1.value || 'Player 1'
+    } else {
+        return player2.value || 'Player 2'
+    }
+}
 
 //we need to define how the game can be won and check for that
 const winningCombos = [
@@ -45,7 +55,7 @@ function restart() {
         squares[i].textContent = "";
         squares[i].classList.remove('winner');
     }
-    message.textContent = "It is X's turn!";
+    message.textContent = `It is ${playersNames()}'s turn!`;
     currentPlayer = players[0];
     gameActive = true;
 }
@@ -55,7 +65,7 @@ restartButton.addEventListener('click', restart)
 //we need a message/prompt when its a players turn/the game is won etc
 const message = document.createElement('h2')
 //created a message here and can add content and styles to it:
-message.textContent = "It is X's turn!"
+message.textContent = `It is ${playersNames()}'s turn!`
 message.style.marginTop ="30px"
 message.style.textAlign ="center"
 board.after(message)
@@ -74,7 +84,7 @@ for(let i = 0; i < squares.length; i++){
         squares[i].textContent = currentPlayer
         
         if(checkWin(currentPlayer)) {
-            message.textContent=`Game over! ${currentPlayer} wins!`
+            message.textContent=`Game over! ${playersNames()} wins!`
         
             checkWin(currentPlayer).forEach(a => {
             squares[a].classList.add('winner')
@@ -90,11 +100,6 @@ for(let i = 0; i < squares.length; i++){
             return
         }
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
-        
-        if(currentPlayer == players[0]) {
-            message.textContent= `It is X's turn!`
-        } else {
-            message.textContent= `It is O's turn!`
-        }     
+        message.textContent = `It is ${playersNames()}'s turn!`
     })   
 }

@@ -64,4 +64,26 @@ p {
     color: rgb(238, 140, 172);
 }
 
+#input {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 5px;
+}
+
+#player1 {
+    color: palevioletred;
+    background-color: rgb(62, 65, 66);
+    text-align: center;
+}
+
+#player2 {
+    color: palevioletred;
+    background-color: rgb(62, 65, 66);
+    text-align: center;
+}
+
+
 
