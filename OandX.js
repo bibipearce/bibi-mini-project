@@ -5,6 +5,7 @@ const squares = document.getElementsByClassName('square')
 const restartButton = document.getElementById('restartButton')
 const player1 = document.getElementById('player1')
 const player2 = document.getElementById('player2')
+const heading = document.getElementById('heading')
 
 //make players to interact with the game/board
 const players = ['X', 'O']
@@ -17,6 +18,19 @@ function playersNames () {
         return player2.value || 'Player 2'
     }
 }
+//a header can be personalised with name inputs
+function personaliseHeader() {
+    const nameX = player1.value
+    const nameO = player2.value
+    if (nameO === "" || nameX === "") {
+        heading.style.display = "none" //if either input field is empty, the header will be invisible
+        return
+    }
+    heading.textContent = `${nameX} (X) vs ${nameO} (O)`
+    heading.style.display = "block" //otherwise, this is shown 
+}
+player1.addEventListener('input', personaliseHeader) //when input is entered, function runs
+player2.addEventListener('input', personaliseHeader)
 
 //we need to define how the game can be won and check for that
 //these are combos of squares that will equate a win
@@ -59,7 +73,7 @@ function restart() {
         squares[i].textContent = "";
         squares[i].classList.remove('winner');
     }
-    message.textContent = `It is ${playersNames()}'s turn!`; //have to double click button to get correct player message ?? needs fixing
+    message.textContent = `It is ${playersNames()}'s turn! (${currentPlayer})`; //have to double click button to get correct player message ?? needs fixing
     currentPlayer = players[0];
     gameActive = true;
 }
@@ -69,7 +83,7 @@ restartButton.addEventListener('click', restart) //allows us to execute that fun
 //we need a message/prompt when its a players turn/the game is won etc
 const message = document.createElement('h2')
 //created a message here and can add content and styles to it:
-message.textContent = `It is ${playersNames()}'s turn!`
+message.textContent = `It is ${playersNames()}'s turn! (${currentPlayer})`
 message.style.marginTop ="30px"
 message.style.textAlign ="center"
 board.after(message)
@@ -88,7 +102,7 @@ for(let i = 0; i < squares.length; i++){
         squares[i].textContent = currentPlayer //put current players symbol in square
         
         if(checkWin(currentPlayer)) {
-            message.textContent=`Game over! ${playersNames()} wins!`
+            message.textContent=`Game over! ${playersNames()} wins! Click restart to play again.`
         
             checkWin(currentPlayer).forEach(a => {
             squares[a].classList.add('winner') //highlights winning combo of squares using winner from css
@@ -99,11 +113,11 @@ for(let i = 0; i < squares.length; i++){
         }
         
         if(checkTie()) {
-            message.textContent= `Game is tied! Click restart to play again!`
+            message.textContent= `Oh no - game is tied! Click restart to play again.`
             gameActive = false 
             return
         }
         currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
-        message.textContent = `It is ${playersNames()}'s turn!` //switches between players in the message, whilst game is active
+        message.textContent = `It is ${playersNames()}'s turn! (${currentPlayer})` //switches between players in the message, whilst game is active
     })   
 }

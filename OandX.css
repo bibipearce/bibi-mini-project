@@ -4,12 +4,15 @@ body {
     color: rgb(62, 65, 66);
     font-family: monospace;
     text-align: center;
+    margin-inline: auto;
+    width: fit-content;
 }
 
 h1 {
-    border: 30px solid transparent;
-    padding: 10px;
+    border: 50px solid transparent;
+    padding: 15px;
     border-image: url(border.png) 20% round;
+    text-decoration: underline;
 }
 
 #board {
@@ -35,6 +38,7 @@ h1 {
 
 .square:hover {
     opacity: 0.6;
+    cursor: pointer;
 }
 
 #restartButton {
@@ -54,12 +58,14 @@ h1 {
 #restartButton:hover {
     background-color: rgb(238, 140, 172);
     color: white;
+    cursor: pointer;
 }
 
 .winner {
     position: relative;
     background-color: rgb(62, 65, 66);
     color: rgb(238, 140, 172);
+    box-shadow: 0 0 10px rgb(62, 65, 66);
 }
 
 #input {
@@ -86,5 +92,16 @@ h1 {
 
 summary {
     font-weight: bolder ;
+}
+
+ul {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    list-style-position: inside;
+}
+
+#heading {
+    display: none;
 }
 
