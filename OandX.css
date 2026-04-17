@@ -6,6 +6,12 @@ body {
     text-align: center;
 }
 
+h1 {
+    border: 30px solid transparent;
+    padding: 10px;
+    border-image: url(border.png) 20% round;
+}
+
 #board {
     margin-left: auto;
     margin-right: auto;
@@ -28,8 +34,7 @@ body {
 }
 
 .square:hover {
-    background-color: rgb(238, 140, 172);
-    color: white;
+    opacity: 0.6;
 }
 
 #restartButton {
@@ -79,4 +84,7 @@ body {
 }
 
 
+summary {
+    font-weight: bolder ;
+}
 

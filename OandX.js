@@ -77,7 +77,7 @@ board.after(message)
 
 
 //logic to add all functions etc above together and create correct messages
-//loop so win/ties are continously looked for each go
+//loop so win/ties are continously looked for each go and game is deactivated when necessary
 for(let i = 0; i < squares.length; i++){
     squares[i].addEventListener('click', () => { //when squares are clicked...
         if (!gameActive) return //if game is won, exit loop so board is no longer interactive
@@ -99,7 +99,7 @@ for(let i = 0; i < squares.length; i++){
         }
         
         if(checkTie()) {
-            message.textContent= `Game is tied!`
+            message.textContent= `Game is tied! Click restart to play again!`
             gameActive = false 
             return
         }
